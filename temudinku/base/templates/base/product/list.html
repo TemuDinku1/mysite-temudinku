@@ -1,0 +1,51 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="services" class="our-services section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
+        <div id="sidebar">
+            <h3>Categories</h3>
+            <hr>
+            <ul>
+              <li {% if not category %}class="selected"{% endif %}>
+                <a href="{% url 'base:product_list' %}">All</a>
+              </li>
+              {% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+                  <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+        </div>
+      </div>
+      <div class="col-lg-8 wow fadeInRight " data-wow-duration="1s" data-wow-delay="0.2s">
+        <div class="row">
+          <h1>{% if category %}{{ category.name }}{% else %}All{% endif %}</h1>
+          <hr>
+          {% for product in products %}
+            <div class="col-lg-4 col-sm-4" >
+                <div class="item">
+                  <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                  </a>
+                  <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                  <br>
+                </div>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+{% endblock %}

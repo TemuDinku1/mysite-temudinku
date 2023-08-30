@@ -1,0 +1,20 @@
+{% extends "base/base.html" %}
+
+{% block title %}Add a comment{% endblock %}
+
+{% block content %}
+<div id="services" class="our-services section">
+  <div class="container">
+    <div class="row">
+      <div class="section-heading">
+        {% if comment %}
+          <h2>Your request has been sent <em>Successfully</em>.</h2>
+          <p><a href="{{ product.get_absolute_url }}">Back to the post</a></p>
+        {% else %}
+        {% include "base/product/includes/comment_form.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

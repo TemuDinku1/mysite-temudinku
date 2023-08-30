@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ product.name }}
+{% endblock %}
+{% block content %}
+<div id="services" class="our-services section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 align-self-center  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
+        <div class="item">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}
+          {% static 'img/no_image.png' %}{% endif %}">
+        </div>
+      </div>
+      <div class="col-lg-8 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
+        <div class="product-detail"></div>
+          <h1>
+            <a href="{{ product.category.get_absolute_url }}">
+              {{ product.category }}
+            </a>
+          </h1><br><hr>
+          <h3>{{ product.name }}</h3><br>
+          {{ product.description|linebreaks }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="services" class="our-services section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        {% include "base/product/includes/comment_form.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

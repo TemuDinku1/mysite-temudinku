@@ -1,0 +1,8 @@
+<h2>Add a new request</h2>
+<form id="contact" action="{% url 'base:product_comment' product.id %}" method="post">
+  {{ form.as_p }}
+  {% csrf_token %}
+  <p>
+    <input type="submit" style="background-color: #0d6efd;;border-radius: 50px;color: #ffffff;"  value="Send Message">
+</p>
+</form>
